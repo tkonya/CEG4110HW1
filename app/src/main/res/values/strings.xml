@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CEG4110HW1</string>
+    <string name="button_1_name">Text Color!</string>
+    <string name="button_2_name">Draw!</string>
+    <string name="ceg4110_homework_1">CEG4110 Homework 1!</string>
+    <string name="my_name_and_prisoner_number">Trevor Konya - U00856354</string>
+    <string name="color_change_Text">Tap to Change Color</string>
+</resources>
