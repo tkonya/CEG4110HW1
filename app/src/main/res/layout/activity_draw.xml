@@ -6,17 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".DrawActivity">
 
-    <io.konya.ceg4110hw1.CustomDrawingView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:background="#ccc"
-        android:paddingBottom="40dp"
-        android:paddingLeft="20dp"
-        app:exampleColor="#33b5e5"
-        app:exampleDimension="24sp"
-        app:exampleDrawable="@android:drawable/ic_menu_add"
-        app:exampleString="Hello, CustomDrawingView" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:orientation="vertical" >
 
+        <io.konya.ceg4110hw1.CustomDrawingView
+            android:id="@+id/custom_draw_view_id"
+            android:layout_width="match_parent"
+            android:layout_height="550sp"
+            android:background="#ccc"
+            android:paddingBottom="40dp"
+            android:paddingLeft="20dp"
+            app:exampleColor="#33b5e5"
+            app:exampleDimension="24sp"
+            app:exampleDrawable="@android:drawable/ic_menu_add"
+            app:exampleString="Hello, CustomDrawingView" />
 
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/select_color_button_id"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/draw_button_1_name" />
+
+            <Button
+                android:id="@+id/save_drawing_button_id"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/draw_button_2_name" />
+
+        </LinearLayout>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
