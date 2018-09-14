@@ -11,6 +11,7 @@ import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import android.widget.TextView
 
 /**
  * TODO: document your custom view class.
@@ -18,15 +19,17 @@ import android.view.View
 class CustomDrawingView : View {
 
     private var _exampleString: String? = null
-    private var _exampleColor: Int = Color.RED
+    private var _exampleColor: Int = Color.BLACK
     private var _exampleDimension: Float = 0f
 
     private var textPaint: TextPaint? = null
     private var textWidth: Float = 0f
     private var textHeight: Float = 0f
 
-    private var paint = Paint()
+    private var paints = mutableListOf<Paint>()
     private var paths = mutableListOf<Path>()
+
+    private var debugBoxReference: TextView? = null
 
     /**
      * The text to draw
@@ -79,17 +82,22 @@ class CustomDrawingView : View {
     }
 
     private fun initializeState() {
-        paint.isAntiAlias = true
-        paint.strokeWidth = 20f
-        paint.color = Color.BLACK
-        paint.style = Paint.Style.STROKE
-        paint.strokeJoin = Paint.Join.ROUND
+        addPaint(255, 0, 0, 0)
         paths.add(Path())
     }
 
     fun setPaintColor(alpha: Int, red: Int, green: Int, blue: Int) {
-        paint.color = Color.argb(alpha, red, green, blue)
+        addPaint(alpha, red, green, blue)
         paths.add(Path())
+    }
+
+    fun addPaint(alpha: Int, red: Int, green: Int, blue: Int) {
+        paints.add(Paint())
+        paints[paints.lastIndex].isAntiAlias = true
+        paints[paints.lastIndex].strokeWidth = 20f
+        paints[paints.lastIndex].color = Color.argb(alpha, red, green, blue)
+        paints[paints.lastIndex].style = Paint.Style.STROKE
+        paints[paints.lastIndex].strokeJoin = Paint.Join.ROUND
     }
 
     private fun init(attrs: AttributeSet?, defStyle: Int) {
@@ -139,10 +147,10 @@ class CustomDrawingView : View {
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
 
-//        if (paths.size == 0) {
-//            paths.add(Path())
-//        }
-        canvas.drawPath(paths[paths.lastIndex], paint)
+        // must redraw all paths with their corresponding paint
+        for ((i, path) in paths.withIndex()) {
+            canvas.drawPath(path, paints[i])
+        }
 
 
         val paddingLeft = paddingLeft
@@ -171,27 +179,30 @@ class CustomDrawingView : View {
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
 
-        var eventX = event?.x
-        var eventY = event?.y
+        val eventX = event?.x
+        val eventY = event?.y
 
         if (eventX == null || eventY == null) {
             return super.onTouchEvent(event)
         }
 
-        when (event?.action) {
+//        setDebugText("onTouchEvent " + paths.size)
+
+        return when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 paths[paths.lastIndex].moveTo(eventX, eventY)
-                return true
+                true
             }
             MotionEvent.ACTION_MOVE -> {
                 paths[paths.lastIndex].lineTo(eventX, eventY)
                 invalidate()
-                return true
+                true
             }
             else -> {
-                return false
+                false
             }
         }
 
     }
+
 }

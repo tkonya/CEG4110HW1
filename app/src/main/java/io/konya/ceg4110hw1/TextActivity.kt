@@ -13,7 +13,7 @@ class TextActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_text)
 
-        val textColorBox = findViewById(R.id.color_text_box_id) as TextView
+        val textColorBox = findViewById<TextView>(R.id.color_text_box_id)
 
         // get reference to button 1
         val colorChangeButton = findViewById(R.id.color_change_button_id) as Button

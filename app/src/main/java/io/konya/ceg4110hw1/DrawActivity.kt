@@ -8,14 +8,10 @@ import com.pes.androidmaterialcolorpickerdialog.ColorPicker
 import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback
 import android.support.annotation.ColorInt
 import android.view.View
+import android.widget.TextView
 
 
 class DrawActivity : AppCompatActivity() {
-
-    var colorRed = 150
-    var colorGreen = 150
-    var colorBlue = 150
-    var colorAlpha = 1
 
     lateinit var drawView : CustomDrawingView
 
@@ -23,23 +19,15 @@ class DrawActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draw)
 
-        drawView = findViewById<CustomDrawingView>(R.id.custom_draw_view_id)
+        drawView = findViewById(R.id.custom_draw_view_id)
 
         val selectColorButton = findViewById<Button>(R.id.select_color_button_id)
         selectColorButton.setOnClickListener {
-            val colorPicker = ColorPicker(this, 150, 150, 150)
+            val colorPicker = ColorPicker(this, 0,0,0)
             colorPicker.show()
 
             colorPicker.setCallback { color ->
-                // Do whatever you want
-                // Examples
-                colorAlpha = Color.alpha(color)
-                colorRed = Color.red(color)
-                colorGreen = Color.green(color)
-                colorBlue = Color.blue(color)
-
-                drawView.setPaintColor(colorAlpha, colorRed, colorGreen, colorBlue)
-
+                drawView.setPaintColor(Color.alpha(color), Color.red(color), Color.green(color), Color.blue(color))
                 colorPicker.dismiss()
             }
 
