@@ -64,7 +64,6 @@ class CustomDrawingView : View {
     /**
      * In the example view, this drawable is drawn above the text.
      */
-    var exampleDrawable: Drawable? = null
 
     constructor(context: Context) : super(context) {
         init(null, 0)
@@ -116,12 +115,6 @@ class CustomDrawingView : View {
                 R.styleable.CustomDrawingView_exampleDimension,
                 exampleDimension)
 
-        if (a.hasValue(R.styleable.CustomDrawingView_exampleDrawable)) {
-            exampleDrawable = a.getDrawable(
-                    R.styleable.CustomDrawingView_exampleDrawable)
-            exampleDrawable?.callback = this
-        }
-
         a.recycle()
 
         // Set up a default TextPaint object
@@ -169,12 +162,6 @@ class CustomDrawingView : View {
                     textPaint)
         }
 
-        // Draw the example drawable on top of the text.
-        exampleDrawable?.let {
-            it.setBounds(paddingLeft, paddingTop,
-                    paddingLeft + contentWidth, paddingTop + contentHeight)
-            it.draw(canvas)
-        }
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
