@@ -1,11 +1,14 @@
 package io.konya.ceg4110hw1
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.Context
+import android.content.pm.PackageManager
 import android.graphics.*
 import android.os.Environment
 import android.provider.MediaStore
+import android.support.v4.content.ContextCompat
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -155,15 +158,15 @@ class CustomDrawingView : View {
             bitmap = Bitmap.createBitmap(canvas.width, canvas.height, Bitmap.Config.ARGB_8888)
             myCanvas = Canvas(bitmap)
 
-            // just a white paint to fill the canvas with
-            var white = Paint()
-            white.style = Paint.Style.FILL
-            white.color = Color.WHITE
-
-            // put white in the background
-            canvas.drawRect(0f, 0f, canvas.width.toFloat(), canvas.height.toFloat(), white)
-            myCanvas!!.drawRect(0f, 0f, canvas.width.toFloat(), canvas.height.toFloat(), white)
         }
+
+        // just a white paint to fill the canvas with
+        var white = Paint()
+        white.style = Paint.Style.FILL
+        white.color = Color.WHITE
+        // put white in the background
+        canvas.drawRect(0f, 0f, canvas.width.toFloat(), canvas.height.toFloat(), white)
+        myCanvas!!.drawRect(0f, 0f, canvas.width.toFloat(), canvas.height.toFloat(), white)
 
         // paint on each canvas, with each paint and path, every time
         for ((i, path) in paths.withIndex()) {
@@ -200,6 +203,7 @@ class CustomDrawingView : View {
     }
 
     fun saveBitmap() {
+
         var path = Environment.getExternalStorageDirectory().toString()
         var file = File(path, "image" + System.nanoTime() + ".png")
         var output = FileOutputStream(file)

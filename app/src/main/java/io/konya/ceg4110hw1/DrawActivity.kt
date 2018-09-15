@@ -1,6 +1,8 @@
 package io.konya.ceg4110hw1
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,8 +10,10 @@ import android.widget.Button
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker
 import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback
 import android.support.annotation.ColorInt
+import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 
 
 class DrawActivity : AppCompatActivity() {
@@ -46,7 +50,17 @@ class DrawActivity : AppCompatActivity() {
 
         val saveImageButton = findViewById<Button>(R.id.save_drawing_button_id)
         saveImageButton.setOnClickListener {
-            drawView.saveBitmap()
+
+            // check permissions
+            if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                drawView.saveBitmap()
+            } else {
+                val toast = Toast.makeText(applicationContext, "Cannot save, try granting storage permission", Toast.LENGTH_SHORT)
+                toast.show()
+                val writePermission = Array(1) { Manifest.permission.WRITE_EXTERNAL_STORAGE}
+                requestPermissions(writePermission, 666)
+            }
+
         }
     }
 }
