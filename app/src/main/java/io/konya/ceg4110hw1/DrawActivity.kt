@@ -46,15 +46,7 @@ class DrawActivity : AppCompatActivity() {
 
         val saveImageButton = findViewById<Button>(R.id.save_drawing_button_id)
         saveImageButton.setOnClickListener {
-
             drawView.saveBitmap()
-//            val shareIntent: Intent = Intent().apply {
-//                action = Intent.ACTION_SEND
-//                putExtra(Intent.EXTRA_STREAM, uriToImage)
-//                type = "image/jpeg"
-//            }
-//
-//            startActivity(Intent.createChooser(shareIntent, resources.getText(R.string.send_to)))
         }
     }
 }

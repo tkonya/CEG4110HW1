@@ -10,7 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginBottom="250sp">
+
+        <EditText
+            android:id="@+id/user_text_box_id"
+            android:textSize="20sp"
+            android:paddingBottom="15sp"
+            android:textAlignment="center"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
             android:id="@+id/color_text_box_id"
