@@ -6,7 +6,7 @@ This is a simple app which contains two functions:
 
 # Requirements
 
-This app needs only one permission: "Storage". This is used to save the drawn images
+This app needs only one permission: "Storage". This is used to save the drawn images. This will be requested once when the app first launches, and each time the "Save Image" button is hit if the permission has not been granted. 
 
 Development was done against API Level 27 / Android 8.1. It may, but it is not guaranteed to work with any lower version.
 
@@ -41,5 +41,3 @@ The following resources were used for this project:
 + [Android Material Color Picker Dialog](https://github.com/Pes8/android-material-color-picker-dialog)
 
 + [Creative Punch: Make a basic single touch drawing app for Android](http://creative-punch.net/2014/03/make-basic-single-touch-drawing-app-android/)
-
-+ [Launcher icon generator](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html#foreground.type=clipart&foreground.clipart=android&foreground.space.trim=1&foreground.space.pad=0.25&foreColor=rgba(96%2C%20125%2C%20139%2C%200)&backColor=rgb(68%2C%20138%2C%20255)&crop=0&backgroundShape=square&effects=none&name=ic_launcher) 
