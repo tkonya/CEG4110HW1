@@ -1,17 +1,18 @@
 package io.konya.ceg4110hw1
 
 import android.annotation.SuppressLint
+import android.content.ContentResolver
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Path
-import android.graphics.drawable.Drawable
+import android.graphics.*
+import android.os.Environment
+import android.provider.MediaStore
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.widget.TextView
+import android.widget.Toast
+import java.io.File
+import java.io.FileOutputStream
 
 /**
  * TODO: document your custom view class.
@@ -28,8 +29,11 @@ class CustomDrawingView : View {
 
     private var paints = mutableListOf<Paint>()
     private var paths = mutableListOf<Path>()
+    private lateinit var bitmap: Bitmap
 
-    private var debugBoxReference: TextView? = null
+    private var myCanvas: Canvas? = null
+
+    private var theContext: Context
 
     /**
      * The text to draw
@@ -67,20 +71,23 @@ class CustomDrawingView : View {
 
     constructor(context: Context) : super(context) {
         init(null, 0)
-        initializeState()
+        this.theContext = context
+        initializePaintsAndPaths()
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         init(attrs, 0)
-        initializeState()
+        this.theContext = context
+        initializePaintsAndPaths()
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
         init(attrs, defStyle)
-        initializeState()
+        this.theContext = context
+        initializePaintsAndPaths()
     }
 
-    private fun initializeState() {
+    private fun initializePaintsAndPaths() {
         addPaint(255, 0, 0, 0)
         paths.add(Path())
     }
@@ -90,7 +97,7 @@ class CustomDrawingView : View {
         paths.add(Path())
     }
 
-    fun addPaint(alpha: Int, red: Int, green: Int, blue: Int) {
+    private fun addPaint(alpha: Int, red: Int, green: Int, blue: Int) {
         paints.add(Paint())
         paints[paints.lastIndex].isAntiAlias = true
         paints[paints.lastIndex].strokeWidth = 20f
@@ -138,28 +145,30 @@ class CustomDrawingView : View {
 
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
 
-        // must redraw all paths with their corresponding paint
-        for ((i, path) in paths.withIndex()) {
-            canvas.drawPath(path, paints[i])
+        super.onDraw(canvas)
+        super.onDraw(myCanvas)
+
+        if (myCanvas == null) {
+
+            // make a bitmap and a "shadow" canvas, which we will paint on
+            bitmap = Bitmap.createBitmap(canvas.width, canvas.height, Bitmap.Config.ARGB_8888)
+            myCanvas = Canvas(bitmap)
+
+            // just a white paint to fill the canvas with
+            var white = Paint()
+            white.style = Paint.Style.FILL
+            white.color = Color.WHITE
+
+            // put white in the background
+            canvas.drawRect(0f, 0f, canvas.width.toFloat(), canvas.height.toFloat(), white)
+            myCanvas!!.drawRect(0f, 0f, canvas.width.toFloat(), canvas.height.toFloat(), white)
         }
 
-
-        val paddingLeft = paddingLeft
-        val paddingTop = paddingTop
-        val paddingRight = paddingRight
-        val paddingBottom = paddingBottom
-
-        val contentWidth = width - paddingLeft - paddingRight
-        val contentHeight = height - paddingTop - paddingBottom
-
-        exampleString?.let {
-            // Draw the text.
-            canvas.drawText(it,
-                    paddingLeft + (contentWidth - textWidth) / 2,
-                    paddingTop + (contentHeight + textHeight) / 2,
-                    textPaint)
+        // paint on each canvas, with each paint and path, every time
+        for ((i, path) in paths.withIndex()) {
+            canvas.drawPath(path, paints[i])
+            myCanvas!!.drawPath(path, paints[i])
         }
 
     }
@@ -172,8 +181,6 @@ class CustomDrawingView : View {
         if (eventX == null || eventY == null) {
             return super.onTouchEvent(event)
         }
-
-//        setDebugText("onTouchEvent " + paths.size)
 
         return when (event.action) {
             MotionEvent.ACTION_DOWN -> {
@@ -190,6 +197,21 @@ class CustomDrawingView : View {
             }
         }
 
+    }
+
+    fun saveBitmap() {
+        var path = Environment.getExternalStorageDirectory().toString()
+        var file = File(path, "image" + System.nanoTime() + ".png")
+        var output = FileOutputStream(file)
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, output)
+        output.close()
+        MediaStore.Images.Media.insertImage(theContext.contentResolver, file.getAbsolutePath(),file.getName(),file.getName());
+
+        val text = "Image saved to Pictures"
+        val duration = Toast.LENGTH_SHORT
+
+        val toast = Toast.makeText(theContext, text, duration)
+        toast.show()
     }
 
 }

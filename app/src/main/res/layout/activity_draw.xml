@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
+        android:gravity="center"
         android:orientation="vertical" >
 
         <io.konya.ceg4110hw1.CustomDrawingView
@@ -20,6 +21,8 @@
             android:background="#ccc"
             android:paddingBottom="40dp"
             android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp"
             app:exampleColor="#33b5e5"
             app:exampleDimension="24sp"
             app:exampleString=""
@@ -29,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingLeft="4dp"
+            android:gravity="center"
             android:paddingRight="4dp"
             android:orientation="horizontal" >
 
