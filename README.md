@@ -20,6 +20,8 @@ The app is implemented with only a few simple classes:
 
 This is the starting activity. It lists my name, UID, and course number, and contains two buttons, one to start each of the other activities.
 
+![main activity](img/Screenshot_1537308450.png)
+
 ### TextActivity
 
 This is the text color activity, which features a user-editable text box, a non-editable text box which displays the color in RGB and Hex format, and a button which randomly changes the color of the text. The RGB and Hex values are changed each time the button is pressed to correspond to the new random color.
