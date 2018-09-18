@@ -1,14 +1,10 @@
 package io.konya.ceg4110hw1
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.content.ContentResolver
 import android.content.Context
-import android.content.pm.PackageManager
 import android.graphics.*
 import android.os.Environment
 import android.provider.MediaStore
-import android.support.v4.content.ContextCompat
 import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.MotionEvent

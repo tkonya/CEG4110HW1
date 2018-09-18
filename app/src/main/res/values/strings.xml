@@ -6,5 +6,6 @@
     <string name="my_name_and_prisoner_number">Trevor Konya 🍕 U00856354</string>
     <string name="color_change_Text">Change Color</string>
     <string name="draw_button_1_name">Select Color</string>
+    <string name="clear_button_1_name">Clear</string>
     <string name="draw_button_2_name">Save Image</string>
 </resources>

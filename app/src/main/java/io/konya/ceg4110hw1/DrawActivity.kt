@@ -62,5 +62,14 @@ class DrawActivity : AppCompatActivity() {
             }
 
         }
+
+        val clearButton = findViewById<Button>(R.id.clear_button_id)
+        clearButton.setOnClickListener {
+            // it just resets the activity, simple
+            finish()
+            overridePendingTransition(0, 0)
+            startActivity(intent)
+            overridePendingTransition(0, 0)
+        }
     }
 }

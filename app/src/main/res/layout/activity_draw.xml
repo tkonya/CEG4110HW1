@@ -43,6 +43,12 @@
                 android:text="@string/draw_button_1_name" />
 
             <Button
+                android:id="@+id/clear_button_id"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/clear_button_1_name" />
+
+            <Button
                 android:id="@+id/save_drawing_button_id"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
