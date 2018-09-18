@@ -12,7 +12,7 @@ Development was done against API Level 27 / Android 8.1. It may, but it is not g
 
 # Development and Design
 
-This project was written in Kotlin, for educational purposes. I'm already pretty familiar with Java, and have wanted to learn Kotlin for a while, thus I decided this would be a good opportunity to force myself to use it. My impressions of the language so far are positive. Android Studio was the IDE used, and the testing device was a Nexus 6P. 
+This project was written in Kotlin, for educational purposes. I'm already pretty familiar with Java, and have wanted to learn Kotlin for a while, thus I decided this would be a good opportunity to force myself to use it. My impressions of the language so far are positive. Android Studio was the IDE used. Testing was done on a virtual Nexus 6P, an actual Nexus 6P, and a first-gen Pixel. 
 
 The app is implemented with only a few simple classes:
 
@@ -30,7 +30,7 @@ This is the text color activity, which features a user-editable text box, a non-
 
 ### CustomDrawingView
 
-This is a class which extends View, and allows the user to draw on it. It is a required component of the following activity class.
+This is a class which extends View, and allows the user to draw on it. It is a required component of the following activity class. It contains an array of Paint and Path which are used to keep track of which strokes are what color.
 
 ### DrawActivity
 
@@ -40,7 +40,7 @@ The draw activity allows the user to draw a simple image and save it to their de
 
 ### Color picker library
 
-A color picker library was used for the colors. It is a simple modal that pops up and allows the user to adjust red, green and blue individually.
+A color picker library was used for the colors. It is a simple modal that pops up and allows the user to adjust red, green and blue individually. See references section for link.
 
 <img src="img/Screenshot_1537308468.png" height="300">
 
