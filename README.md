@@ -10,6 +10,8 @@ This app needs only one permission: "Storage". This is used to save the drawn im
 
 Development was done against API Level 27 / Android 8.1. It may, but it is not guaranteed to work with any lower version.
 
+Running the APK should be as easy as dropping it into your device. Apps from unknown sources must be enabled.
+
 # Development and Design
 
 This project was written in Kotlin, for educational purposes. I'm already pretty familiar with Java, and have wanted to learn Kotlin for a while, thus I decided this would be a good opportunity to force myself to use it. My impressions of the language so far are positive. Android Studio was the IDE used. Testing was done on a virtual Nexus 6P, an actual Nexus 6P, and a first-gen Pixel. 
