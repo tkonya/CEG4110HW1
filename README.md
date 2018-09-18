@@ -20,7 +20,7 @@ The app is implemented with only a few simple classes:
 
 This is the starting activity. It lists my name, UID, and course number, and contains two buttons, one to start each of the other activities.
 
-![main activity](img/Screenshot_1537308450.png)
+<img src="img/Screenshot_1537308450.png" height="200">
 
 ### TextActivity
 
