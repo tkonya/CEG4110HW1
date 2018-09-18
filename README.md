@@ -10,7 +10,7 @@ This app needs only one permission: "Storage". This is used to save the drawn im
 
 Development was done against API Level 27 / Android 8.1. It may, but it is not guaranteed to work with any lower version.
 
-Running the APK should be as easy as dropping it into your device. Apps from unknown sources must be enabled.
+Running the APK should be as easy as loading it onto your device and installing. Apps from unknown sources must be enabled.
 
 # Development and Design
 
