@@ -20,11 +20,13 @@ The app is implemented with only a few simple classes:
 
 This is the starting activity. It lists my name, UID, and course number, and contains two buttons, one to start each of the other activities.
 
-<img src="img/Screenshot_1537308450.png" height="200">
+<img src="img/Screenshot_1537308450.png" height="300">
 
 ### TextActivity
 
 This is the text color activity, which features a user-editable text box, a non-editable text box which displays the color in RGB and Hex format, and a button which randomly changes the color of the text. The RGB and Hex values are changed each time the button is pressed to correspond to the new random color.
+
+<img src="img/Screenshot_1537308505.png" height="300">
 
 ### CustomDrawingView
 
@@ -33,6 +35,14 @@ This is a class which extends View, and allows the user to draw on it. It is a r
 ### DrawActivity
 
 The draw activity allows the user to draw a simple image and save it to their device. This is implemented with the built-in android classes Paint, Path and Canvas. There are two buttons at the bottom which allow color changing and saving. Color changing was implemented by including a library (see References section), and saving is handled by simple built-in android features. The user is notified that the save was successful with a toast message.
+
+<img src="img/Screenshot_1537308477.png" height="300">
+
+### Color picker library
+
+A color picker library was used for the colors. It is a simple modal that pops up and allows the user to adjust red, green and blue individually.
+
+<img src="img/Screenshot_1537308450.png" height="300">
 
 # References
 
