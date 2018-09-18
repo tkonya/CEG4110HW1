@@ -42,7 +42,7 @@ The draw activity allows the user to draw a simple image and save it to their de
 
 A color picker library was used for the colors. It is a simple modal that pops up and allows the user to adjust red, green and blue individually.
 
-<img src="img/Screenshot_1537308450.png" height="300">
+<img src="img/Screenshot_1537308468.png" height="300">
 
 # References
 
